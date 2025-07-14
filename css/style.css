@@ -2,8 +2,7 @@
 /* 編碼一定要在第一行 */
 
 /* css reset */
-*,
-*::before*::after {
+* {
     box-sizing: border-box;
     /* 這段是讓容器方便算，不會累加 */
 }
@@ -153,20 +152,22 @@ img {
 
 /* 重置連接 */
 a {
+    display: block;
     color: var(--neutral-600);
     text-decoration: none;
 }
 
 /* 首頁區 */
 #topbar {
-    width: 95%;
     position: fixed;
     top: 0;
-    right: 0px;
+    left: 0;
+    width: 100%;
+    z-index: var(--ex);
+
     display: flex;
     justify-content: space-between;
     padding: 10px 30px;
-    z-index: var(--ex);
 }
 
 div.logo {
@@ -180,37 +181,22 @@ div.logo {
 
 /* icon選單 */
 .icon a {
-    outline: 1px solid;
-    display: block;
     width: 35px;
     height: 35px;
     margin: 5px;
 }
 
 /* svg會自動等比例縮放，其他點陣圖，部會自動fill，要background-size: 100%; */
-#topbar .icon-fb {
-    background-image: url('../images/icon-fb.svg');
+.icon-fb { 
+    background-image: url(../images/icon-fb.svg);
+    /* background-size: 100%; */
 }
+.icon-ig { background-image: url(../images/icon-ig.svg); }
+.icon-line { background-image: url(../images/icon-line.svg); }
 
-#topbar .icon-fb:hover {
-    background-image: url('../images/icon-fb-hover.svg');
-}
-
-#topbar .icon-ig {
-    background-image: url('../images/icon-ig.svg');
-}
-
-#topbar .icon-ig:hover {
-    background-image: url('../images/icon-ig-hover.svg');
-}
-
-#topbar .icon-line {
-    background-image: url('../images/icon-line.svg');
-}
-
-#topbar .icon-line:hover {
-    background-image: url('../images/icon-line-hover.svg');
-}
+.icon-fb:hover { background-image: url(../images/icon-fb-hover.svg); }
+.icon-ig:hover { background-image: url(../images/icon-ig-hover.svg); }
+.icon-line:hover { background-image: url(../images/icon-line-hover.svg); }
 
 /* 主選單 */
 #topbar .menu {
@@ -224,14 +210,14 @@ div.logo {
 
 
 #topbar .menu a {
-    padding: 10px;
+    margin: 10px;
     border-bottom: 2px solid transparent;
     /* 保留hover的空間，防止尺寸變動 */
 }
 
 #topbar .menu a:hover {
     color: var(--neutral-900);
-    border-bottom: 2px solid var(--neutral-900);
+    border-bottom: 2px solid #222;
 }
 
 /* 聯絡我們 */
