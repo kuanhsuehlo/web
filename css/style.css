@@ -1,6 +1,10 @@
-@charset "UTF-8";
-/* 編碼一定要在第一行 */
-
+@charset "UTF-8";/* 編碼一定要在第一行 */
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display&family=Ubuntu=swap');
+/* google font一定要第二行 */
+@font-face {
+    font-family: SuperMario256;
+    src: url(../webfonts/SuperMario256.ttf);
+}
 /* css reset */
 * {
     box-sizing: border-box;
@@ -233,6 +237,8 @@ div.logo {
     margin: 10px;
     border-bottom: 2px solid transparent;
     /* 保留hover的空間，防止尺寸變動 */
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
 }
 
 #topbar .menu a:hover {
@@ -242,12 +248,55 @@ div.logo {
 
 /* 聯絡我們 */
 #contact {
+    display: flex;
+    flex-direction: column; /* 主軸垂直 */
+    justify-content: center; /* 主軸(垂直)對齊:置中 */
+    align-items: center; /* 副軸(水平) */
+
+    
     height: 100vh;
     /* 背景影像預設排序高於背景顏色 */
     /* background-image: url(../images/banner_1.jpg); */
     background-color: var(--bg-1);
 }
+
+#contact .content {
+    display: flex;
+    width: 80%;
+}
+#contact .content >* {
+    flex: 1; /* 父元素必須設定flex */
+    margin: 0 15px;
+}
+#contact .content h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#contact address {
+    font-size: 0.8rem;
+    font-style: normal;
+    margin: 20px 0;
+}
 /* 共用區 */
+.title {
+    margin-bottom: 30px;
+}
+
+.title * { /* .title裡面的子孫 * */
+    text-align: center;
+    font-weight: 700;
+}
+.title h2 {
+    font-family: SuperMario256, sans-serif;
+    font-size: 2.5rem;
+    border-bottom: solid 2px var(--deep);
+}
+.title h3 {
+    font-family: "LXGW WenKai TC", cursive;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
 /* 區塊標題 */
 
 
