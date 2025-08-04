@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
+
 <head>
     <meta charset="UTF-8">
     <!-- RWD基本設定，顯示網站的所放基準 ex @media(max-width: 992px;) -->
@@ -8,6 +9,7 @@
     <!-- 上傳Github時，路徑要變更./ -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
     <!-- 頁首區 -->
     <!-- id&class的名稱，是自己命名的 -->
@@ -43,7 +45,7 @@
                 <h3>聯絡我們</h3>
             </header>
             <!-- 聯絡資訊 -->
-             <section class="content">
+            <section class="content">
                 <div class="address">
                     <!-- 品牌名稱 -->
                     <h1>芮塔花室</h1>
@@ -55,18 +57,33 @@
                     </address>
 
                     <!-- google map -->
-                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d903.7429668334634!2d121.52063013527899!3d25.03502877589769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a99db9a2a94d%3A0x43e9034292df69b2!2z5ZyL56uL5Lit5q2j57SA5b-15aCC!5e0!3m2!1szh-TW!2stw!4v1753778084099!5m2!1szh-TW!2stw" width="60%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d903.7429668334634!2d121.52063013527899!3d25.03502877589769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a99db9a2a94d%3A0x43e9034292df69b2!2z5ZyL56uL5Lit5q2j57SA5b-15aCC!5e0!3m2!1szh-TW!2stw!4v1753778084099!5m2!1szh-TW!2stw"
+                        width="60%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <!-- 表單 -->
-                 <form action="">表單內容</form>
-             </section>
-             
-             
-            
+                <form name="contactform" id="contactform" action="" method="post" accept-charset="UTF-8">
+                    <label for="username">*姓名:</label>
+                    <!-- autofocus欄位必須在first view 視窗顯示最上面才能設定 -->
+                    <input type="text" name="username" id="username" title="姓名欄位" placeholder="請輸入姓名" required
+                        autofocus>
+                    <label for="tel">聯絡電話: </label>
+                    <input type="tel" name="tel" id="tel" maxlength="10" title="聯絡電話欄位" placeholder="例如:0954555444">
+                    <label for="e-mail">Email:</label>
+                    <input type="email" name="email" id="email" required multiple title="email欄位"
+                        placeholder="請輸入email">
+                    <label for="message">留言:</label>
+                    <textarea name="message" id="message" rows="10"></textarea>
+                </form>
+            </section>
+
+
+
         </section>
     </main>
     <!-- 頁尾區 -->
-     <footer>
+    <footer>
         <h2>芮塔花市 <span>Rita Flower</span></h2>
         <nav>
             <ul class="sitemap">
@@ -96,6 +113,7 @@
             </ul>
         </nav>
         <small>Copyright &copy; 芮塔花市 Rita Flower</small>
-     </footer>
+    </footer>
 </body>
+
 </html>
