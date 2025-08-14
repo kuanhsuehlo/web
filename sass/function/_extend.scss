@@ -1,0 +1,37 @@
+@use "../variables/" as *;
+@use "./mixin" as *;
+%flex-center {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+%flex-between {
+    display: flex !important;
+    justify-content: space-between;
+}
+
+%flex-end {
+    display: flex !important;
+    justify-content: flex-end;
+}
+
+%btn-animate {
+    border-radius: $radius-ex;
+    @extend %flex-center;
+    height: 60px;
+    width: 210px;
+    cursor: pointer;
+    margin: $spacing-md auto;
+    @include bordered;
+    letter-spacing: $spacing-sm;
+    padding-left: $spacing-sm;
+
+    &:hover {
+        @include amt($name: rotate);
+
+        span {
+            @include amt ($name: storm);
+        }
+    }
+}

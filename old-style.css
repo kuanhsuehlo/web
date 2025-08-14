@@ -1,0 +1,566 @@
+@charset "UTF-8";
+/* 編碼一定要在第一行 */
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display&family=Ubuntu=swap');
+
+/* google font一定要第二行 */
+@font-face {
+    font-family: SuperMario256;
+    src: url(../webfonts/SuperMario256.ttf);
+}
+
+/* css reset */
+* {
+    box-sizing: border-box;
+    /* 這段是讓容器方便算，不會累加 */
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+}
+
+/* 顏色設定 */
+:root {
+    --primary-100: #f5fee7;
+    --primary-400: #57a203;
+    --neutral-0: #ffffff;
+    --neutral-100: #f8f9fa;
+    --neutral-300: #dee2e6;
+    --neutral-600: #6c757d;
+    --neutral-900: #212529;
+    /* 灰階 */
+    --deep: #444;
+    --dark: #666;
+    --gray: #999;
+    --light: #f1f1f1;
+    /* 背景 */
+    --bg-1: #F2EDF0;
+    --bg-2: #e6ece5;
+    --bg-3: #ecf0f4;
+    /* 輔助 */
+    --lesser-1: #f3e4e4;
+    --lesser-2: #efdbdb;
+    --lesser-3: #cdaaab;
+    --lesser-4: #8F6B6D;
+    /* 透明 */
+    --alpha-w-20: rgba(255, 255, 255, 0.2);
+    --alpha-w-40: rgba(255, 255, 255, 0.4);
+
+    --alpha-b-20: rgba(0, 0, 0, 0.2);
+    /* 尺寸 */
+    --ex: 9999;
+}
+
+/* 重置字體 */
+body {
+    /* 需要""的字體名稱: 二個英文單字含空格、中文字體名稱
+    不需要""的字體名稱有:一個單字、有-隔開 */
+    font-family:
+        /*英文*/
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
+        /*中文*/
+        "蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    ;
+    line-height: 1.5;
+}
+
+/* 重置標題 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+/* 重置列表 */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 重置圖片 */
+img {
+    display: block;
+    width: 100%;
+}
+
+/* 重置連接 */
+a {
+    display: block;
+    color: var(--neutral-600);
+    text-decoration: none;
+    /* 元素本身，建議不要設在偽類別上 */
+    /* 設定在偽類別上滑鼠未停留時，效果不會運行 */
+    transition: 0.4s;
+}
+
+/* 首頁區 */
+#topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: var(--ex);
+
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+}
+
+div.logo {
+    width: 55px;
+}
+
+#topbar ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* icon選單 */
+.icon a {
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+}
+
+/* svg會自動等比例縮放，其他點陣圖，部會自動fill，要background-size: 100%; */
+.icon-fb {
+    background-image: url(../images/icon-fb.svg);
+    /* background-size: 100%; */
+}
+
+.icon-ig {
+    background-image: url(../images/icon-ig.svg);
+}
+
+.icon-line {
+    background-image: url(../images/icon-line.svg);
+}
+
+.icon-fb:hover {
+    background-image: url(../images/icon-fb-hover.svg);
+}
+
+.icon-ig:hover {
+    background-image: url(../images/icon-ig-hover.svg);
+}
+
+.icon-line:hover {
+    background-image: url(../images/icon-line-hover.svg);
+}
+
+/* 主選單 */
+#topbar .menu {
+    padding: 0 10px;
+    border-radius: 999px;
+    /* 玻璃擬態 */
+    /* background-color: var(--alpha-w-20); */
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.4));
+    border: 2px solid var(--alpha-w-40);
+    backdrop-filter: blur(20px);
+    /* 容器陰影，只針對元素本身，子元素不會套用 */
+    box-shadow: 2px 2px 5px var(--alpha-b-20),
+        inset -1px -1px 1px var(--alpha-w-40);
+    /* 濾鏡的陰影是包含子元素都套用(所有的孩子都有陰影) */
+    /* filter: drop-shadow(2px 4px 3px rgba(0, 0, 0, 0.2)); */
+
+    /* 文字陰影，只針對文字元素，包含子元素 */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+#topbar .menu a {
+    margin: 10px;
+    border-bottom: 2px solid transparent;
+    /* 保留hover的空間，防止尺寸變動 */
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+}
+
+#topbar .menu a:hover {
+    color: var(--neutral-900);
+    border-bottom: 2px solid #222;
+}
+
+/* 聯絡我們 */
+#contact {
+    display: flex;
+    flex-direction: column;
+    /* 主軸垂直 */
+    justify-content: center;
+    /* 主軸(垂直)對齊:置中 */
+    align-items: center;
+    /* 副軸(水平) */
+
+
+    height: 100vh;
+    /* 背景影像預設排序高於背景顏色 */
+    /* background-image: url(../images/banner_1.jpg); */
+    background-color: var(--bg-1);
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width:820px) {
+    #contact {
+        height: auto;
+    }
+}
+
+#contact .content {
+    display: flex;
+    width: 80%;
+}
+
+@media (max-width:640px) {
+    #contact .content {
+        flex-direction: column;
+    }
+}
+
+#contact .content>* {
+    flex: 1;
+    /* 父元素必須設定flex */
+    margin: 0 15px;
+}
+
+#contact .content h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#contact address {
+    font-size: 0.8rem;
+    font-style: normal;
+    margin: 20px 0;
+}
+
+#contact iframe {
+    width:100%;
+    height:380px;
+    border: none;
+}
+
+/* 裝飾花朵 */
+#contact figure {
+    position: absolute;
+    width: 15%;
+}
+
+
+
+#contact .flower-one {
+    left: 0;
+    bottom: -50px;
+}
+
+#contact .flower-two {
+    right: 0;
+    top: 100px;
+    right: -35px;
+    transform: rotate(-30deg);
+}
+
+@media (max-width:820px) {
+    #contact figure {
+        width: 25%;
+    }
+}
+
+@media (max-width:640px) {
+    #contact figure {
+        display: none;
+    }
+}
+
+#contactform>* {
+    display: block;
+    width: 100%;
+    z-index: 999;
+}
+
+#contactform label {
+    margin: 10px 0 5px;
+}
+
+#contactform input,
+#contactform textarea {
+    border: 1px solid var(--lesser-3);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#contactform input:focus,
+#contactform textarea:focus {
+    outline: 2px solid var(--lesser-3);
+}
+
+#contactform input::placeholder,
+#contactform textarea::placeholder {
+    color: var(--lesser-3);
+    font-size: 0.8rem;
+}
+
+/* 共用區 */
+/* 區塊標題 */
+.title {
+    margin-top: 110px;
+    margin-bottom: 30px;
+}
+
+.title * {
+    /* .title裡面的子孫 * */
+    text-align: center;
+    font-weight: 700;
+}
+
+.title h2 {
+    font-family: SuperMario256, sans-serif;
+    font-size: 2.5rem;
+    border-bottom: solid 2px var(--deep);
+}
+
+.title h3 {
+    font-family: "LXGW WenKai TC", cursive;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* 按鈕 */
+
+.btn-animate {
+    /* position: relative; */
+    /* outline: none; */
+    /* text-decoration: none; */
+    border-radius: 99px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* text-transform: uppercase; */
+    height: 60px;
+    max-width: 210px
+        /* !important */
+    ;
+    margin: 25px auto;
+    /* opacity: 1; */
+    color: var(--lesser-4);
+    background-color: #ffffff;
+    border: 1px solid var(--lesser-3);
+    /* 字句置中 */
+    letter-spacing: 25px;
+    padding-left: 25px;
+}
+
+/* .btn-animate span {
+    display: block;
+} */
+
+.btn-animate:hover {
+    animation: rotate 0.7s ease-in-out both;
+}
+
+
+
+/* transform */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(3deg);
+    }
+
+    50% {
+        transform: rotate(-3deg);
+    }
+
+    75% {
+        transform: rotate(1deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* translate3d */
+.btn-animate:hover span {
+    animation: storm 0.7s ease-in-out both;
+    animation-delay: 0.06s;
+}
+
+@keyframes storm {
+    0% {
+        transform: translate3d(0, 0, 0) translateZ(0);
+    }
+
+    25% {
+        transform: translate3d(4px, 0, 0) translateZ(0);
+    }
+
+    50% {
+        transform: translate3d(-3px, 0, 0) translateZ(0);
+    }
+
+    75% {
+        transform: translate3d(2px, 0, 0) translateZ(0);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0) translateZ(0);
+    }
+}
+
+
+
+
+
+/* 頁尾區 */
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    background-color: var(--lesser-4);
+    color: var(--light);
+}
+
+
+footer h2 {
+    font-size: 1.5rem;
+}
+
+footer h2 span {
+    font-size: 1rem;
+}
+
+footer a {
+    color: var(--light);
+}
+
+footer .sitemap {
+    display: flex;
+}
+
+/* [>]為指定第一層，只會套用在第一層 */
+footer .sitemap>li {
+    margin: 0 10px;
+}
+
+footer small {
+    align-self: flex-end;
+}
+
+@media (max-width:820px) {
+    footer {
+        flex-direction: column;
+    }
+
+    footer .sitemap {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width:640px){
+    footer .sitemap {
+        flex-direction: column;
+    }
+    footer .sitemap ul {
+        padding-left: 20px;
+    }
+    footer .sitemap li {
+        padding: 10px 0;
+    }
+    footer small {
+    align-self: flex-start;
+    margin-top: 30px;
+}
+
+}
+/* reset end */
