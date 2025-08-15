@@ -1,5 +1,6 @@
 // Font-family
-$family-en: "Morgan";
+$family-Mario : "SuperMario256";
+$family-en: "Ubuntu";
 $family-display: "Rosaline, serif";
 $tc: "LXGW Wenkai TC";
 $family-tc: "#{$tc}, cursive";
@@ -27,6 +28,8 @@ $f-s-ex: 4rem;
 // $h6-font-size:                $font-size-base;
 
 // font-weight
+$f-w-r: 400;
+$f-w-m: 600;
 $f-w-b: 700;
 
 // $font-weight-lighter:         lighter;

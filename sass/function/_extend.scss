@@ -35,3 +35,21 @@
         }
     }
 }
+
+%input-style {
+    // border: 1px solid var(--lesser-3);
+    @include bordered;
+    padding: $spacing-xs;
+    border-radius: 5px;
+    color: $lesser-4;
+    font-weight: $f-w-m;
+
+    &:focus {
+        outline: 2px solid $lesser-3;
+    }
+    &::placeholder {
+        color: $lesser-3;
+        font-size: $f-s-xs;
+        font-weight: $f-w-r;
+    }
+}

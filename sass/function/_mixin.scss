@@ -16,6 +16,6 @@
     // border: 2px solid var(--alpha-w-40);
     @include bordered($width: 2px,$color:$alpha-w-40 );
     backdrop-filter: blur(20px);
-    box-shadow: 2px 2px 5px var($alpha-b-20),
-        inset -1px -1px 1px var($alpha-w-40);
+    box-shadow: 2px 2px 5px rgba($Black,$alpha-20),
+        inset -1px -1px 1px $alpha-w-40;
 }
