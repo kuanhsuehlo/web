@@ -1,5 +1,6 @@
 @use "../variables/" as *;
 @use "./mixin" as *;
+
 %flex-center {
     display: flex !important;
     justify-content: center;
@@ -15,6 +16,14 @@
     display: flex !important;
     justify-content: flex-end;
 }
+
+%img-cover {
+    object-fit: cover;
+    height: 100%;
+    width: 100%; // reset已經寫了
+}
+
+
 
 %btn-animate {
     border-radius: $radius-ex;
@@ -36,6 +45,7 @@
     }
 }
 
+
 %input-style {
     // border: 1px solid var(--lesser-3);
     @include bordered;
@@ -47,9 +57,30 @@
     &:focus {
         outline: 2px solid $lesser-3;
     }
+
     &::placeholder {
         color: $lesser-3;
         font-size: $f-s-xs;
         font-weight: $f-w-r;
     }
+}
+
+%multiple-lines {
+    // 多行省略
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+%single-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+%list-title {
+    font-size: $f-s-lg;
+    font-weight: $f-w-m;
+    margin-bottom: $spacing-xs;
 }

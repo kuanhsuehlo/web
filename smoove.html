@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>practice</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            line-height: 100vh;
+            text-align: center;
+            background-color: rgb(236, 198, 236);
+            font-size: 3rem;
+            color: aliceblue;
+        }
+
+        footer {
+            line-height: 100vh;
+            text-align: center;
+            background-color: rgb(151, 80, 151);
+            line-height: 40vh;
+            color: aliceblue;
+            font-size: 3rem;
+        }
+
+        .row {
+            display: flex;
+            /* margin-left: 12px;
+            margin-right: 12px; */
+        }
+
+        .smoove {
+            background-color: rgb(128, 77, 128);
+            flex: 1;
+            height: 300px;
+            margin: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Banner</header>
+    <main>
+        <!-- 預設的淡入淡出 -->
+        <div class="row">
+            <div class="smoove"></div>
+            <div class="smoove"></div>
+        </div>
+        <!-- 旋轉載入 -->
+        <div class="row">
+            <div class="smoove" data-move-x="-500px" data-ratate="90deg"></div>
+            <div class="smoove" data-move-x="-250px" data-ratate="45deg" data-move-y="100px"></div>
+            <div class="smoove" data-move-x="500px" data-ratate="-90deg"></div>
+        </div>
+        <div class="row">
+            <div class="smoove" data-move-x="-300px" data-move-y="200px"></div>
+            <div class="smoove" data-move-x="-150px" data-move-y="200px"></div>
+            <div class="smoove" data-move-x="150px" data-move-y="200px"></div>
+            <div class="smoove" data-move-x="300px" data-move-y="200px"></div>
+        </div>
+        <!-- 翻轉載入 -->
+        <div class="row">
+            <div class="smoove" data-move-x="-150%" data-ratate="-90deg"></div>
+            <div class="smoove" data-move-x="150%"  data-ratate="90deg"></div>
+        </div>
+        <!-- zoom in -->
+        <div class="row">
+            <div class="smoove smo-z"></div>
+            <div class="smoove smo-z"></div>
+            <div class="smoove smo-z"></div>
+        </div>
+        <!-- perspective -->
+        <div class="row">
+            <div class="smoove smo-per"></div>
+            <div class="smoove smo-per"></div>
+            <div class="smoove smo-per"></div>
+            <div class="smoove smo-per"></div>
+            <div class="smoove smo-per"></div>
+        </div>
+    </main>
+    <footer>Footer</footer>
+
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- jQuery Smoove -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smoove/0.2.10/jquery.smoove.min.js"></script>
+
+    <!-- My jQuery -->
+     <script>
+        // 共用預設值
+        $('.smoove').smoove({
+            offset : 300
+        });
+        $('.smo-z').smoove({
+            moveZ : '500px'
+        });
+        $('.smo-per').smoove({
+            rotateX: '90deg',
+            moveZ : '500px'
+        });
+     </script>
+
+</body>
+
+</html>

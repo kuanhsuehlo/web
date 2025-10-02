@@ -2,7 +2,9 @@
 @use "./variables/" as *;
 @use "function" as *;
 @use "./keyframes";
-@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display&family=Ubuntu=swap');
+// @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display&family=Ubuntu=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
 
 
 @font-face {
@@ -20,9 +22,35 @@
     }
 
     h2 {
+        position: relative;
         font-family: $family-Mario;
         font-size: $f-s-xxxl;
         @include border-b;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            background-color: $lesser-4;
+        }
+
+
+
+        &::before {
+            top: -5px;
+            left: -10px;
+            border-radius: $radius-ex;
+            width: 15px;
+            height: 15px;
+        }
+
+        &::after {
+            bottom: -5px;
+            right: -5px;
+            border-radius: $radius-ex;
+            width: 10px;
+            height: 10px;
+        }
     }
 
     h3 {
@@ -30,6 +58,8 @@
         font-size: $f-s-lg;
         font-weight: $f-w-b;
     }
+
+
 }
 
 .logo {
@@ -55,6 +85,17 @@
     }
 }
 
+.more {
+    margin-top: $spacing-lg;
+    width: 100px;
+    padding: 10px 0;
+    background-color: $lesser-4;
+    text-align: center;
+    color: $Light;
+    border-radius: $radius-ex;
+    vertical-align: middle;
+}
+
 // 頁首區
 #topbar {
     position: fixed;
@@ -65,29 +106,382 @@
     @extend %flex-between;
     padding: $spacing-xs $spacing-xl;
 
-    ul {
-        @extend %flex-end;
+    
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    
+    // 漢堡按鈕
+    .hamburger {
+        background-color: transparent;
+        border: none;
+        margin-bottom: $spacing-xs;
+
+        @media ($mediaXl) {
+            display: none;
+        }
+        .bar {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: $Charcoal;
+            margin: $spacing-xxs auto;
+            // transition: 0.35s;
+        }
+        &.is-active {
+            .bar {
+                &:nth-child(1) {
+                    transform: rotate(45deg) translate(5px,6px);
+                }
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+                &:nth-child(3) {
+                    transform: rotate(-45deg) translate(5px,-6px);
+                }
+            }
+        }
+
     }
 
-    .menu {
-        padding: $spacing-x-xs;
-        border-radius: $radius-ex;
-        @include glassmorphism;
 
-        a {
-            margin: 10px;
-            font-family: $family-en;
-            font-weight: $f-w-b;
-            @include border-b($width: 2px, $color: transparent);
+    .navigation {
+        @media ($mediaLg) {
+            @include glassmorphism;
+            border-radius: $radius-md;
+            display: none;
+            flex-direction: column;
+            padding: $spacing-xs;
+            @include amt($name:hide);
 
-            &:hover {
-                $color: $Black;
-                @include border-b($width: 2px, $color: $Black);
+            &.show {
+                display: flex;
+                @include amt($name:show);
+            }
+        }
+
+
+        ul {
+            @extend %flex-end;
+        }
+
+
+        .menu {
+            padding: $spacing-x-xs;
+            border-radius: $radius-ex;
+
+            @media ($mediaXl) {
+                @include glassmorphism
+            }
+
+            @media ($mediaLg) {
+                flex-direction: column;
+                order: -1;
+            }
+
+            a {
+                margin: 10px;
+                font-family: $family-en;
+                font-weight: $f-w-b;
+                @include border-b($width: 2px, $color: transparent);
+
+                &:hover {
+                    $color: $Black;
+                    @include border-b($width: 2px, $color: $Black);
+                }
+            }
+        }
+    }
+}
+}
+
+/* 主要內容區 */
+#index {
+    section {
+        @extend %flex-center;
+        flex-direction: column;
+        height: 100vh;
+
+        @media ($mediaMd) {
+            &#video {
+                height: auto;
+                padding: $spacing-ex;
             }
         }
     }
 }
 
+.list-box {
+    display: flex;
+    gap: $spacing-xl;
+    width: $w-80;
+    max-width: 1100px;
+
+    .item {
+        flex: 1;
+        @include bordered; // 沒有觸發
+        // border: 1px solid $lesser-3;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+}
+
+// 最新消息
+#news {
+    background-color: $bg-1;
+
+    article {
+        @media ($mediaMd) {
+            &:last-child {
+                display: none;
+            }
+        }
+
+        @media ($mediaSm) {
+            &:nth-child(n+2) {
+                //
+                display: none;
+            }
+        }
+
+        a {
+            &:hover {
+                .text-box {
+                    background-color: $Light;
+                }
+
+                figure {
+                    filter: brightness(50%);
+                }
+            }
+
+            figure {
+                height: 30vh;
+                transition: $speed-fast;
+
+                img {
+                    @extend %img-cover;
+                }
+            }
+
+            .text-box {
+                padding: $spacing-md;
+                background-color: $bg-1;
+                transition: $speed-fast;
+
+                // h2 {
+                //     // font-size: $f-s-lg;
+                //     // font-weight: $f-w-m;
+                //     // margin-bottom: $spacing-xs;
+                // }
+
+                p {
+                    text-align: justify; // 中文可以用，英文不建議
+                    @extend %multiple-lines;
+                    -webkit-line-clamp: 4;
+                }
+            }
+        }
+    }
+}
+
+// 服務項目
+#service {
+    background-color: $bg-2;
+
+    .list-box {
+        @media ($mediaMd) {
+            flex-direction: column;
+            height: 70vh; //主軸垂直，高度轉換成hug，影響到子元素
+        }
+
+        .item {
+            display: flex;
+            align-items: flex-end;
+            height: 50vh;
+            background-size: cover; // 自動縮放，並剪裁右下圖片的範圍
+            background-position: center; // 背景置中
+
+            @media ($mediaMd) {
+                &:nth-child(n+3) {
+                    display: none;
+                }
+            }
+
+            @media ($mediaSm) {
+                &:nth-child(n+2) {
+                    display: none;
+                }
+            }
+
+
+
+            &:nth-child(1) {
+                background-image: url(../images/pt_svc1.jpg);
+            }
+
+            &:nth-child(2) {
+                background-image: url(../images/pt_svc2.jpg);
+            }
+
+            &:nth-child(3) {
+                background-image: url(../images/pt_svc3.jpg);
+            }
+
+            &:nth-child(4) {
+                background-image: url(../images/pt_svc4.jpg);
+            }
+
+            a {
+                width: 100%;
+                padding: $spacing-md;
+                color: $Light;
+                background-color: $alpha-b-60;
+
+                h2 {
+                    @extend %list-title;
+                }
+
+                p {
+                    @extend %single-line
+                }
+
+                &:hover {
+                    color: $Black;
+                    background-color: $alpha-w-40;
+                }
+            }
+        }
+    }
+}
+
+// 相關影片
+#video {
+    background-image: url(../images/bg_contact.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    // @media ($mediaMd) {
+    //     height: auto !important;
+    // }
+
+    div {
+        @extend %flex-center;
+        height: 50vh; // 設定寬度會比例超過，設高度不會，但rwd要做斷點
+
+        video {
+            height: 100%;
+
+            @media ($mediaMd) {
+                width: 80%;
+                height: auto;
+            }
+        }
+
+        @media ($mediaMd) {
+            width: 70%;
+            height: auto;
+        }
+    }
+}
+
+// 關於我們
+#about {
+    position: relative;
+    background-color: $bg-1;
+
+    div {
+        position: absolute;
+        z-index: 1;
+        width: 60%;
+        height: 100%;
+        background-color: $alpha-w-70;
+        @extend %flex-center;
+        flex-direction: column;
+
+        @media ($mediaMd) {
+            width: 80%;
+        }
+
+        p {
+            line-height: 180%;
+            width: 90%;
+            overflow: auto;
+            overflow-x: scroll;
+            margin-bottom: $spacing-xxl;
+            padding-right: $spacing-xs;
+
+
+            // 滾動條
+            &::-webkit-scrollbar {
+                // background-color: $lesser-1;
+                width: 12px; // 控制垂直的捲軸
+                height: 12px; // 控制水平卷軸的按鈕
+            }
+
+            &::-webkit-scrollbar-button {
+                //上下左右按鈕區
+                // background-color: $lesser-3;
+                // width: 12px;
+                // height: 12px;
+                background-size: contain;
+                background-position: center center;
+                background-repeat: no-repeat;
+
+                &:vertical:single-button:start {
+                    background-image: url(../images/arrow-up.svg);
+
+                }
+
+                &:vertical:single-button:end {
+                    background-image: url(../images/arrow-down.svg);
+                }
+
+                &:horizontal:single-button:start {
+                    background-image: url(../images/arrow-left.svg);
+                }
+
+                &:horizontal:single-button:end {
+                    background-image: url(../images/arrow-right.svg);
+                }
+            }
+
+
+
+
+            &::-webkit-scrollbar-thumb {
+                // 滾動手柄
+                background-color: $lesser-4;
+                border-radius: $radius-ex;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: rgb(232, 200, 200);
+                border-radius: $radius-ex;
+            }
+
+            &::-webkit-scrollbar-track-piece {
+                border-radius: $radius-ex;
+            }
+
+            &::-webkit-scrollbar-corner {
+                background-color: $lesser-4;
+            }
+        }
+    }
+
+    video {
+        // position: absolute;
+        @extend %img-cover;
+        opacity: 0.6;
+        mix-blend-mode: multiply;
+        filter: brightness(80%) contrast(50%);
+    }
+}
+
+// 聯絡我們
 #contact {
     position: relative;
     overflow: hidden;
@@ -151,6 +545,10 @@
 
             textarea {
                 @extend %input-style;
+
+                &::-webkit-resizer {
+                    background-image: url(../images/arrow-45.svg);
+                }
             }
         }
     }
@@ -235,5 +633,26 @@ footer {
             align-self: flex-start;
             margin-top: $spacing-xl;
         }
+    }
+
+    #gotop {
+        display: none;
+        width: 50px;
+        height: 50px;
+        background-color: $lesser-3;
+        border-radius: $radius-ex;
+
+        border: none;
+        position: fixed;
+        bottom: $spacing-xl;
+        right: $spacing-xl;
+        ;
+        cursor: pointer;
+        z-index: $z-ex;
+
+        &:hover {
+            background-color: $lesser-2;
+        }
+
     }
 }
